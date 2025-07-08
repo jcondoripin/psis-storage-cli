@@ -118,7 +118,7 @@ db.disconnect();
 ## 📌 Notas
 
 * El conector usa parseo JSON manual (sin dependencia externa).
-* Si usas Windows, asegúrate de tener `ws2_32.lib` disponible.
+* Si usas Windows, asegúrate de tener `ws2_32.lib` disponible, incluyendo -lws2_32.
 * El protocolo espera respuestas tipo:
 
 ```json
