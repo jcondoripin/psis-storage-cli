@@ -110,6 +110,9 @@ db.connect();
 auto r1 = db.create("usuarios", 0, {{"id", "INT"}, {"nombre", "TEXT"}});
 auto r2 = db.insert("usuarios", {{"id", "1", "INT"}, {"nombre", "Alice", "TEXT"}});
 auto r3 = db.get("usuarios", 1);
+auto r4 = db.select("usuarios", {{"nombre", "Alice", "TEXT"}}); // Select por nombre
+auto r5 = db.select("usuarios", {}); // Obtiene todos los campos, sin WHERE
+
 db.disconnect();
 ```
 

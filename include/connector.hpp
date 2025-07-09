@@ -66,6 +66,27 @@ public:
     }
     return sendCommand(cmd.str());
   };
+  DBResponse select(const std::string &table,
+                    const std::vector<std::tuple<std::string, std::string, std::string>> &values)
+  {
+    validateKinds(values);
+    std::ostringstream cmd;
+    cmd << "SELECT " << table;
+    if (values.size() > 0) {
+      cmd << " WHERE";
+      for (auto &t : values)
+      {
+        auto &col = std::get<0>(t);
+        auto &val = std::get<1>(t);
+        auto &kind = std::get<2>(t);
+        if (val.find(' ') != std::string::npos)
+          cmd << " " << col << ":\"" << val << "\":" << kind;
+        else
+          cmd << " " << col << ":" << val << ":" << kind;
+      }
+    }
+    return sendCommand(cmd.str());
+  };
   DBResponse insert(const std::string &table,
                     const std::vector<std::tuple<std::string, std::string, std::string>> &values)
   {
